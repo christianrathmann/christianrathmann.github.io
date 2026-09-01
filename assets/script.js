@@ -104,6 +104,31 @@
     nav.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => setOpen(false)));
   }
 
+  const updatesLabel = [...document.querySelectorAll('.section-label')].find((el) => {
+    const text = el.textContent.trim();
+    return text === 'Current Updates' || text === 'Aktuelle Updates';
+  });
+
+  const updatesSection = updatesLabel?.closest('section');
+  if (updatesSection && !document.querySelector('.updates-nature-image')) {
+    const figure = document.createElement('figure');
+    figure.className = 'updates-nature-image';
+    figure.style.cssText = 'margin:0;background:#f5f8fb;overflow:hidden';
+
+    const img = document.createElement('img');
+    img.src = isGerman ? '../assets/home-updates-flowers.jpg' : 'assets/home-updates-flowers.jpg';
+    img.alt = isGerman
+      ? 'Pinke und weiße Blumen in Pflanzkästen in städtischer Umgebung.'
+      : 'Pink and white flowers in planters in an urban setting.';
+    img.width = 1200;
+    img.height = 525;
+    img.decoding = 'async';
+    img.style.cssText = 'width:100%;height:clamp(150px,18vw,220px);object-fit:cover;object-position:center 50%';
+
+    figure.appendChild(img);
+    updatesSection.before(figure);
+  }
+
   const filterButtons = document.querySelectorAll('.filter-btn');
   if (filterButtons.length) {
     filterButtons.forEach((btn) => {
