@@ -1,22 +1,27 @@
-
 (() => {
   const toggle = document.querySelector('.nav-toggle');
   const nav = document.querySelector('.nav-links');
+
   if (toggle && nav) {
-    toggle.addEventListener('click', () => {
-      const open = nav.classList.toggle('open');
+    const setOpen = (open) => {
+      nav.classList.toggle('open', open);
       toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+    };
+
+    toggle.addEventListener('click', () => {
+      setOpen(!nav.classList.contains('open'));
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && nav.classList.contains('open')) {
+        setOpen(false);
+        toggle.focus();
+      }
+    });
+
+    nav.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => setOpen(false));
     });
   }
-  document.querySelectorAll('.filter-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const filter = btn.dataset.filter;
-      document.querySelectorAll('.pub-card').forEach(card => {
-        const areas = (card.dataset.areas || '').split(' ');
-        card.classList.toggle('hidden', filter !== 'all' && !areas.includes(filter));
-      });
-    });
-  });
 })();
