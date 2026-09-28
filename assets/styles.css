@@ -146,7 +146,7 @@ h3 { color:var(--hu-blue-dark); margin-top:0; }
 .compact-facts p { font-size:16px; }
 .about-layout { grid-template-columns:.75fr 1.25fr; }
 .about-photo { margin:0; border:1px solid var(--line); background:var(--soft); border-radius:10px; overflow:hidden; }
-.about-photo img { width:100%; aspect-ratio: 4/5; object-fit:cover; object-position:0% 45%; }
+.about-photo img { width:100%; height:auto; aspect-ratio:4/5; object-fit:cover; object-position:0% 45%; }
 .about-caption { padding:12px 14px; font-size:14px; color:var(--muted); }
 .contact-panel { display:grid; grid-template-columns:1fr 1fr; gap:56px; background:var(--hu-blue); color:#fff; padding:44px; border-radius:12px; }
 .contact-panel h2 { color:#fff; }
